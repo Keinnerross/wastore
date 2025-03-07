@@ -97,8 +97,20 @@ let isLoadingGroups = "Desconectado";
 
 
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
 
+    if (isNaN(date.getTime())) {
+        console.error('Fecha no válida:', dateString);
+        return 'Fecha no válida';
+    }
 
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
 
 
 
@@ -114,24 +126,45 @@ const sendNotification = (messageObj) => {
         console.log('Datos recibidos:', messageObj);
 
         const myID = client.info.wid._serialized;
-
+        const prefijoTelefono = "56"
 
         let productosComprados = messageObj.products.map(product => product.product_name).join(', ');
 
-       
+        const cliente = {
+            nombre: messageObj.user.user_name,
+            telefono: prefijoTelefono + messageObj.user.user_phone,
+        }
 
 
-        const notiTemplate = `Bienvenid@ ${messageObj.user.user_name}🌹✨
+        const orden = {
+            id: messageObj.order.order_id,
+            productosComprados: messageObj.products.map(product => product.product_name).join(', '),
+            fechaEntrega: formatDate(messageObj.order.shipping_address_2)
+        }
+
+
+
+
+
+        const notiTemplateCliente = `Bienvenid@ *${cliente.nombre}*🌹✨
 Esperamos que nuestras flores, puedan transmitir tus emociones!
 
 Tus flores y regalos🌻
 
-*Tu numero de orden es: ${messageObj.order.order_id}*
-*El producto que compraste es: ${productosComprados}*
-*La entrega de tu pedido sera: a calcular*
-`
+*Tu numero de orden es: ${orden.id}*
+*El producto que compraste es: ${orden.productosComprados}*
+*La entrega de tu pedido sera: ${orden.fechaEntrega}*
+`;
 
-        client.sendMessage(myID, notiTemplate);
+const notiTemplateTienda = `¡Haz recibido un *nuevo pedido!*
+*Número de orden es: ${orden.id}*
+*Producto: ${orden.productosComprados}*
+*Fecha de entrega: ${orden.fechaEntrega}*
+`;
+
+
+        client.sendMessage(cliente.telefono, notiTemplateCliente);
+        client.sendMessage(myID, notiTemplateTienda);
 
 
 
