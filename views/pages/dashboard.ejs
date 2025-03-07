@@ -1,0 +1,241 @@
+<%- include('../header.ejs') %>
+
+    <body x-data class="text-gray-800">
+        <div id="ui-controllers"
+            x-data="{ isQrOpen : false,  isUserMenu : false, isPlugModal : false, showTooltipBelt: false, showTooltipUser : false}">
+            <header
+                class="w-full h-20 bg-white flex flex-col justify-center items-center text-gray-800 shadow-xl border-[2px] border-solid border-gray-200">
+                <div class="w-[90vw]  flex justify-between items-center">
+                    <div class="flex gap-1 items-center">
+
+                        <div id="logotype" class="overflow-hidden w-[150px] h-20 cursor-pointer">
+                            <img src="/assets/logo.png" class="w-full h-full object-contain" />
+                        </div>
+
+                    </div>
+                    <div>
+                        <nav class="flex items-center gap-4">
+                            <ul class="flex items-center gap-4 text-lg">
+                                <li class="cursor-pointer relative inline-block"
+                                    @click="showTooltipBelt = !showTooltipBelt">
+                                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                    <div x-show="showTooltipBelt" x-transition
+                                        class="absolute top-[110%] right-[-60px] bg-gray-800 text-white p-2 rounded shadow-lg text-sm z-10">
+                                        Próximamente
+                                    </div>
+                                </li>
+
+                                <li> <span x-on:click="isPlugModal = true;" class="text-center cursor-pointer">
+                                        <i class="fa fa-plug" aria-hidden="true"></i>
+                                    </span> </li>
+                            </ul>
+
+                            <div x-on:click="isUserMenu = !isUserMenu"
+                                class="relative flex items-center gap-2 h-full h-full cursor-pointer hover:bg-gray-100 px-4 py-2 rounded-2xl">
+
+                                <div id="user-icon"
+                                    class="relative rounded-full w-8 h-8  flex justify-center items-center text-center">
+                                    <svg stroke="black" fill="black" stroke-width="0" viewBox="0 0 512 512" height="35"
+                                        width="35" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M399 384.2C376.9 345.8 335.4 320 288 320l-64 0c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z">
+                                        </path>
+                                    </svg>
+                                    <div x-bind:class="{ 
+                                    'bg-green-400': $store.services.status == 'Conectado', 
+                                    'bg-gray-300': $store.services.status == 'Desconectado' 
+                                }" class="w-3 h-3 rounded-full  absolute right-[-2px] bottom-[1px] z-10">
+                                    </div>
+                                </div>
+                                <div id="user-info" class=" flex gap-1 items-center h-full ">
+                                    <div class="leading-[9px] flex flex-col pt-2">
+                                        <span class="">Admin</span>
+                                        <span x-text="$store.services.status" id="status" x-bind:class="{ 
+                                        'text-sm': $store.services.status == 'Conectado', 
+                                        'text-xs': $store.services.status == 'Desconectado' 
+                                    }" class="w-[90px]"></span>
+                                    </div>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </div>
+
+                                <div x-on:click.stop x-show="isUserMenu" id="user-menu"
+                                    class="absolute top-[100%] right-0 px-2  py-6 bg-white rounded-2xl w-[200px] z-20">
+                                    <ul>
+                                        <li @click="showTooltipUser = !showTooltipUser"
+                                            class="py-2 px-4 rounded-2xl cursor-pointer hover:bg-[#FAFAFA] flex items-center gap-2">
+                                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                                            <span>Editar Cuenta</span>
+
+                                            <div x-show="showTooltipUser" x-transition
+                                                class="absolute top-[30px] left-[-130px] bg-gray-800 text-white p-2 rounded shadow-lg text-sm">
+                                                Próximamente
+                                            </div>
+
+                                        </li>
+                                        <li
+                                            class="py-2 px-4 rounded-2xl cursor-pointer hover:bg-[#FAFAFA] flex items-center gap-2">
+                                            <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24"
+                                                height="20px" width="20px" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                            <span x-on:click="$store.services.cerrarSessionUsuario">Cerrar
+                                                Sessión</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+
+            <div x-show="isPlugModal" id="modal-plug"
+                class="w-full h-full flex justify-center items-center fixed top-0 left-0 z-50 bg-black/30  z-50">
+
+                <div
+                    class="w-[500px] h-[400px] bg-white rounded-2xl p-4 flex justify-center items-center flex-col gap-4">
+
+                    <svg stroke="#99a1af" fill="#99a1af" stroke-width="0" viewBox="0 0 576 512" height="150px"
+                        width="150px" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M96 0C78.3 0 64 14.3 64 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM288 0c-17.7 0-32 14.3-32 32l0 96 64 0 0-96c0-17.7-14.3-32-32-32zM32 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l0 32c0 77.4 55 142 128 156.8l0 67.2c0 17.7 14.3 32 32 32s32-14.3 32-32l0-67.2c12.3-2.5 24.1-6.4 35.1-11.5c-2.1-10.8-3.1-21.9-3.1-33.3c0-80.3 53.8-148 127.3-169.2c.5-2.2 .7-4.5 .7-6.8c0-17.7-14.3-32-32-32L32 160zM432 512a144 144 0 1 0 0-288 144 144 0 1 0 0 288zm59.3-180.7L454.6 368l36.7 36.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0L432 390.6l-36.7 36.7c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6L409.4 368l-36.7-36.7c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L432 345.4l36.7-36.7c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                        </path>
+                    </svg>
+                    <h2 class="text-xl font-semibold text-center mb-4">Con esta acción desvincularás los dispositivo
+                        previamente vinculado, ¿deseas continuar?
+                    </h2>
+                    <div class="flex gap-2">
+                        <p x-on:click="isPlugModal = false"
+                            class="w-full cursor-pointer mt-6 bg-violet-500 text-white py-2 px-4 rounded-full hover:bg-violet-700 transition">
+                            Cerrar
+                        </p>
+                        <p x-on:click="$store.services.cerrar()"
+                            class="w-full cursor-pointer mt-6 bg-gray-400  text-white py-2 px-4 rounded-full hover:bg-violet-700 transition">
+                            Desvincular
+                        </p>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+            <!--Modal QR-->
+
+
+
+
+
+
+
+            <!-- Content -->
+
+            <div id="body-content" class="w-full flex items-center flex-col bg-[#FAFAFA]  relative">
+                <div id="body-bg" class="h-[400px]"></div>
+                <!-- Header Content -->
+                <div class="w-full flex items-center flex-col pb-16 z-10">
+
+                    <div class="rounded-lg px-2 py-8 w-[85vw] flex">
+                        <div class="leading-0 flex flex-col">
+                            <h2 class=" text-3xl font-semibold text-gray-800">Bienvenido!</h2>
+                            <span class="text-sm text-gray-600">Dashboard • Wastore</span>
+                        </div>
+                    </div>
+                    <!-- Content Content -->
+                    <div class="flex justify-between  w-[85vw] gap-6 min-h-[500px]">
+
+                        <div class="rounded-2xl w-[45%] bg-white  min-h-[500px] p-8 shadow-xs">
+                            <h3 class="font-medium text-lg pb-4">Escanea este código QR para vincular tu dispositivo
+                            </h3>
+
+                            <p class="text-sm text-justify">
+                                Al escanear este código, podrás vincular tu teléfono a tu tienda y recibir
+                                notificaciones en tiempo real cada vez que se realice un nuevo pedido. De esta manera,
+                                estarás siempre al tanto de las órdenes y podrás gestionarlas de manera eficiente.</p>
+                            <p class="font-medium text-sm pt-4">
+                                ¡Mantente conectado y no te pierdas ningún pedido!</p>
+                        </div>
+
+
+                        <div
+                            class="w-[55%] rounded-2xl bg-white px-6 py-8 min-h-[500px] shadow-xs flex justify-center items-center">
+
+                            <div
+                                class="w-[400px] h-[400px] bg-white rounded-2xl p-4 flex justify-center items-center flex-col gap-4">
+                                <div class="w-[250px] h-[250px] rounded-lg overflow-hidden">
+                                    <img id="qrImage" src="" alt="qr" class="w-full h-full object-contain">
+                                </div>
+                                <span
+                                    class="px-6 py-2 bg-pink-400 hover:bg-pink-500 text-white font-semibold cursor-pointer rounded-lg text-center">Escanea
+                                    el código QR para vincular WhatsApp con tu tienda
+                                </span>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer>
+                <div class="bg-white h-[120px] flex flex-col justify-center items-center">
+                    <div class="flex justify-between  items-center w-[85vw]">
+                        <div id="logotype" class="flex gap-1 items-center">
+
+                            <div id="logotype" class="overflow-hidden w-[150px] h-20 cursor-pointer">
+                                <img src="/assets/logo.png" class="w-full h-full object-contain" />
+                            </div>
+
+                        </div>
+
+                      
+
+                        <nav class="flex items-center gap-10 text-2xl">
+                            <ul class="flex items-center gap-4">
+                                <li class="cursor-pointer relative inline-block"
+                                    @click="showTooltipBelt = !showTooltipBelt">
+                                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                                    <div x-show="showTooltipBelt" x-transition
+                                        class="absolute top-[110%] right-[-60px] bg-gray-800 text-white p-2 rounded shadow-lg text-sm">
+                                        Próximamente
+                                    </div>
+                                </li>
+                              
+                                <li> <span x-on:click="isPlugModal = true;" class="text-center cursor-pointer">
+                                        <i class="fa fa-plug" aria-hidden="true"></i>
+                                    </span> </li>
+                            </ul>
+
+
+
+                        </nav>
+                    </div>
+
+
+                </div>
+                <div class="w-full text-center pt-10 text-sm text-gray-400 font-medium py-4">
+                    <span class="font-semibold">Wastore 2025</span>
+
+                </div>
+            </footer>
+
+        </div>
+
+    </body>
+
+
+    </html>

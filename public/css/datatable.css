@@ -1,0 +1,67 @@
+.dt-empty{
+    min-width: 100%;
+    width: 100%;
+}
+
+.sorting_1{
+    width: 100%;
+}
+
+.inputTable:checked + .labelTable::before {
+    display: block;
+}
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+    justify-content: flex-start;
+    margin-left: 0 !important;
+    width: 100%;
+
+
+}
+
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+    justify-content: flex-start;
+    margin-left: 0 !important;
+    width: 100%;
+}
+
+.dt-search{
+    width: 100%;
+    background-color: #FAFAFA !important;
+    border-radius: 25px !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+}
+
+
+
+.dt-search::before{
+    font-family: 'FontAwesome';
+    content: '\f002';
+    color: gray;
+    width: 20px;
+    height: 20px;
+}
+
+
+.dt-search label{
+    display: none;
+}
+
+.dt-input{
+    width: 100%;
+    outline: none;
+    border: 0 !important;
+}
+
+
+
+
+.dataTable tbody tr:hover {
+    max-width: 20% !important;
+   background-color: #FAFAFA;
+   border-radius: 10px !important;
+   overflow: hidden;
+   cursor: pointer;
+}

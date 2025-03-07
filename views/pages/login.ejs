@@ -1,0 +1,62 @@
+<%- include('../header.ejs') %>
+
+
+    <body x-data class="text-gray-800">
+        <div class="w-full h-screen items-center justify-center fixed z-50 flex md:hidden">
+            <p class="font-semibold text-center px-4 text-white text-3xl">Aplicacion disponible solo en Escritorio</p>
+        </div>
+
+        <div class="w-full h-screen bg-pink-200 hidden md:flex">
+            <div
+                class="w-1/2 h-full bg-no-repeat bg-[url('assets/bg-login.png')] bg-[position:50px_150px] bg-[size:80%] relative">
+
+                <div class="absolute top-10 left-24 text-text font-semibold text-xl flex gap-2 items-center">
+                    <div class="w-[170px] h-[170px] bg-white rounded-full flex justify-center items-center">
+
+                        <div id="logotype" class="overflow-hidden w-[150px] h-20 cursor-pointer">
+                            <img src="/assets/logo.png" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="w-1/2 h-full flex justify-center items-center bg-white">
+                <div
+                    class="w-1/2 min-w-[400px] max-w-[400px] min-h-[430px] p-8 bg-white rounded-3xl shadow-lg bg-white flex flex-col ">
+                    <h1 class="py-4  text-2xl font-semibold text-text">Inicia Sesión</h1>
+                    <p class="max-w-[99%] pb-2 text-gray-500 text-sm font-light leading-6">
+                        Por favor ingrese sus credenciales para acceder a la configuración de las notificaciones.
+                    </p>
+                    <form x-on:submit.prevent="$store.services.handleLogin" id="loginForm" class="text-left">
+                        <div class="flex flex-col gap-1 py-2">
+                            <div class="!bg-[#ECF0F1] h-12 px-4 rounded-full flex items-center gap-4 ">
+                                <i class="fa fa-user" class="text-gray-500"></i>
+                                <input x-model="$store.services.username" type="text" id="username" name="username"
+                                    placeholder="Usuario" class="outline-0 w-full h-full bg-transparent " required />
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1 py-2">
+                            <div class="!bg-[#ECF0F1] h-12 px-4 rounded-full flex items-center gap-4">
+                                <i class="fa fa-key" class="text-gray-500"> </i>
+                                <input x-model="$store.services.userPassword" type="password" id="password"
+                                    name="password" placeholder="Contraseña"
+                                    class="outline-0 w-full h-full bg-transparent " required />
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-pink-400 text-mywhite border-2 border-pink-400 py-3 px-5 text-white cursor-pointer text-lg font-semibold rounded-full mt-4 transition-colors duration-300 ease-in-out hover:bg-pink-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            type="submit">
+                            Iniciar sesión
+                        </button>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+
+    </html>

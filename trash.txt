@@ -1,0 +1,178 @@
+<VirtualHost *:443>
+   ServerName chatbot.theaupairjournal.com
+
+   ProxyRequests Off
+   ProxyPreserveHost On
+   ProxyVia Full
+   <Proxy *>
+      Require all granted
+   </Proxy>
+
+   <Location /var/www/web/whatsappgroup>
+      ProxyPass http://127.0.0.1:3000
+      ProxyPassReverse http://127.0.0.1:3000
+   </Location>
+
+    <Directory "/var/www/web/whatsappgroup">
+    AllowOverride All
+    </Directory>
+
+     SSLEngine on
+
+    SSLCertificateFile /etc/ssl/certs/ssl-certificado.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-certificado.key
+</VirtualHost>
+
+
+
+
+que diferencias notables hay entre este grupo de objetos y
+
+number: '584247628878',
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: 'Keily',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: 'Keily',
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: true,
+    isGroup: false,
+    isWAContact: true,
+    isMyContact: true,
+    isBlocked: false
+  },
+  PrivateContact {
+    id: {
+      server: 'c.us',
+      user: '56944265048',
+      _serialized: '56944265048@c.us'
+    },
+    number: '56944265048',
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: 'Dragon Tatto Chile',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: 'Dragon Tatto Chile',
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: true,
+    isGroup: false,
+    isWAContact: true,
+    isMyContact: true,
+    isBlocked: false
+  },
+  PrivateContact {
+    id: {
+      server: 'c.us',
+      user: '573147854094',
+      _serialized: '573147854094@c.us'
+    },
+    number: '573147854094',
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: 'Pedro Gamero Transf Peru',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: 'Pedro Gamero',
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: true,
+    isGroup: false,
+    isWAContact: true,
+    isMyContact: true,
+    isBlocked: false
+  },
+
+
+y este otro grupo de objetos
+
+  PrivateContact {
+    id: {
+      server: 'g.us',
+      user: '120363021393410666',
+      _serialized: '120363021393410666@g.us'
+    },
+    number: null,
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: '🤡',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: undefined,
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: false,
+    isGroup: true,
+    isWAContact: false,
+    isMyContact: false,
+    isBlocked: false
+  },
+  PrivateContact {
+    id: {
+      server: 'g.us',
+      user: '120363026993416613',
+      _serialized: '120363026993416613@g.us'
+    },
+    number: null,
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: 'Camping',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: undefined,
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: false,
+    isGroup: true,
+    isWAContact: false,
+    isMyContact: false,
+    isBlocked: false
+  },
+  PrivateContact {
+    id: {
+      server: 'g.us',
+      user: '120363345170558532',
+      _serialized: '120363345170558532@g.us'
+    },
+    number: null,
+    isBusiness: false,
+    isEnterprise: undefined,
+    labels: undefined,
+    name: 'Workana LATAM #41 A  🖥️💛',
+    pushname: undefined,
+    sectionHeader: undefined,
+    shortName: undefined,
+    statusMute: undefined,
+    type: 'in',
+    verifiedLevel: undefined,
+    verifiedName: undefined,
+    isMe: false,
+    isUser: false,
+    isGroup: true,
+    isWAContact: false,
+    isMyContact: false,
+    isBlocked: false
+  }

@@ -1,0 +1,54 @@
+body{
+    font-family: "Poppins", serif;
+}
+
+
+/* Scrollbar general */
+::-webkit-scrollbar {
+    width: 10px; /* Hace la barra más visible pero aún minimalista */
+    height: 10px;
+    border-radius: 50px; /* Hace la barra completamente redonda */
+
+}
+
+/* Fondo de la barra de scroll */
+::-webkit-scrollbar-track {
+    background: transparent; /* Mantiene un look limpio */
+    border-radius: 10px; /* Hace que el track también sea redondeado */
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 100, 100, 0.4) transparent;
+
+}
+
+
+
+/*Checkbox*/
+
+input[type="checkbox"] {
+    width: 16px;  
+    height: 16px; 
+    cursor: pointer;
+    border-radius: 50%; /* Hace que el checkbox sea redondo */
+    outline: 0;
+  }
+
+  #body-bg {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../assets/bg.png');
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.1;  /* Controla la opacidad */
+    
+  }
+  
+  textarea:focus{
+    outline: 1px gainsboro solid;
+  }

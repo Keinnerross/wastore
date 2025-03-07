@@ -1,0 +1,38 @@
+# Node modules
+/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build output
+/dist
+/build
+/.next
+/.nuxt
+/coverage
+
+# Dependency directories
+/pnpm-lock.yaml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.idea/
+.vscode/
+
+# OS files
+*.swp
+
+
+.wwebjs_auth/
+.wwebjs_cache/
